@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Signature Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            height: 200px;
+        }
+        .form-group button {
+            padding: 10px 15px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Email Signature Generator</h1>
+        <form id="signatureForm">
+            <!-- Form Fields -->
+            <div class="form-group">
+                <label for="fullName">Full Name:</label>
+                <input type="text" id="fullName" name="fullName" required>
+            </div>
+            <div class="form-group">
+                <label for="jobTitle">Job Title:</label>
+                <input type="text" id="jobTitle" name="jobTitle" required>
+            </div>
+            <div class="form-group">
+                <label for="department">Department:</label>
+                <input type="text" id="department" name="department" required>
+            </div>
+            <div class="form-group">
+                <label for="companyName">Company Name:</label>
+                <input type="text" id="companyName" name="companyName" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="mainPhone">Main Phone Number:</label>
+                <input type="text" id="mainPhone" name="mainPhone" required>
+            </div>
+            <div class="form-group">
+                <label for="mobilePhone">Mobile Phone Number:</label>
+                <input type="text" id="mobilePhone" name="mobilePhone" required>
+            </div>
+            <div class="form-group">
+                <label for="directPhone">Direct Phone Number:</label>
+                <input type="text" id="directPhone" name="directPhone">
+            </div>
+            <div class="form-group">
+                <label for="faxNumber">Fax Number:</label>
+                <input type="text" id="faxNumber" name="faxNumber">
+            </div>
+            <div class="form-group">
+                <label for="skypeUsername">Skype Username:</label>
+                <input type="text" id="skypeUsername" name="skypeUsername">
+            </div>
+            <div class="form-group">
+                <label for="companyAddress">Company Address (Google Maps URL):</label>
+                <input type="text" id="companyAddress" name="companyAddress" required>
+            </div>
+            <div class="form-group">
+                <label for="website">Website URL:</label>
+                <input type="url" id="website" name="website" required>
+            </div>
+            <div class="form-group">
+                <label for="twitter">Twitter URL:</label>
+                <input type="url" id="twitter" name="twitter">
+            </div>
+            <div class="form-group">
+                <label for="linkedIn">LinkedIn URL:</label>
+                <input type="url" id="linkedIn" name="linkedIn">
+            </div>
+            <div class="form-group">
+                <label for="facebook">Facebook URL:</label>
+                <input type="url" id="facebook" name="facebook">
+            </div>
+            <div class="form-group">
+                <label for="instagram">Instagram URL:</label>
+                <input type="url" id="instagram" name="instagram">
+            </div>
+            <div class="form-group">
+                <label for="tiktok">TikTok URL:</label>
+                <input type="url" id="tiktok" name="tiktok">
+            </div>
+            <div class="form-group">
+                <label for="pinterest">Pinterest URL:</label>
+                <input type="url" id="pinterest" name="pinterest">
+            </div>
+            <div class="form-group">
+                <label for="youtube">YouTube URL:</label>
+                <input type="url" id="youtube" name="youtube">
+            </div>
+            <div class="form-group">
+                <label for="google">Google URL:</label>
+                <input type="url" id="google" name="google">
+            </div>
+            <div class="form-group">
+                <label for="yelp">Yelp URL:</label>
+                <input type="url" id="yelp" name="yelp">
+            </div>
+            <div class="form-group">
+                <label for="tripadvisor">Tripadvisor URL:</label>
+                <input type="url" id="tripadvisor" name="tripadvisor">
+            </div>
+            <div class="form-group">
+                <label for="podcast">Podcast URL:</label>
+                <input type="url" id="podcast" name="podcast">
+            </div>
+            <!-- Submit Button -->
+            <div class="form-group">
+                <button type="submit">Generate Signature</button>
+            </div>
+        </form>
+        <!-- Textarea for Copying the HTML -->
+        <div class="form-group">
+            <label for="generatedSignature">Generated Signature HTML:</label>
+            <textarea id="generatedSignature" readonly></textarea>
+        </div>
+    </div>
+    <script>
+        document.getElementById('signatureForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            let formData = new FormData(event.target);
+            let signature = `
+                <div>
+                    <img src="https://signaturehound.com/api/v1/file/o15ozllxguhq9u" alt="Profile Picture" width="151" height="151">
+                    <h2>${formData.get('fullName')}</h2>
+                    <p>${formData.get('jobTitle')}</p>
+                    <p>${formData.get('department')}</p>
+                    <p>${formData.get('companyName')}</p>
+                    <p>Email: <a href="mailto:${formData.get('email')}">${formData.get('email')}</a></p>
+                    <p>Main Phone: ${formData.get('mainPhone')}</p>
+                    <p>Mobile Phone: ${formData.get('mobilePhone')}</p>
+                    <p>Direct Phone: ${formData.get('directPhone')}</p>
+                    <p>Fax: ${formData.get('faxNumber')}</p>
+                    <p>Skype: ${formData.get('skypeUsername')}</p>
+                    <p>Address: <a href="${formData.get('companyAddress')}">Google Maps</a></p>
+                    <p>Website: <a href="${formData.get('website')}">${formData.get('website')}</a></p>
+                    <p>Twitter: <a href="${formData.get('twitter')}">${formData.get('twitter')}</a></p>
+                    <p>LinkedIn: <a href="${formData.get('linkedIn')}">${formData.get('linkedIn')}</a></p>
+                    <p>Facebook: <a href="${formData.get('facebook')}">${formData.get('facebook')}</a></p>
+                    <p>Instagram: <a href="${formData.get('instagram')}">${formData.get('instagram')}</a></p>
+                    <p>TikTok: <a href="${formData.get('tiktok')}">${formData.get('tiktok')}</a></p>
+                    <p>Pinterest: <a href="${formData.get('pinterest')}">${formData.get('pinterest')}</a></p>
+                    <p>YouTube: <a href="${formData.get('youtube')}">${formData.get('youtube')}</a></p>
+                    <p>Google: <a href="${formData.get('google')}">${formData.get('google')}</a></p>
+                    <p>Yelp: <a href="${formData.get('yelp')}">${formData.get('yelp')}</a></p>
+                    <p>Tripadvisor: <a href="${formData.get('tripadvisor')}">${formData.get('tripadvisor')}</a></p>
+                    <p>Podcast: <a href="${formData.get('podcast')}">${formData.get('podcast')}</a></p>
+                </div>
+            `;
+            document.getElementById('generatedSignature').value = signature;
+            let newWindow = window.open();
+            newWindow.document.write(signature);
+            newWindow.document.close();
+        });
+    </script>
+</body>
+</html>
